@@ -5,8 +5,10 @@ import string as s
 
 # Criando senha segura.
 print(s.ascii_letters, s.digits, s.punctuation)
+print()
 
-print(''.join(Sr().choices(s.ascii_letters + s.digits + s.punctuation, k=40)))
+print('Senha criptografada:')
+print(''.join(Sr().choices(s.ascii_letters + s.digits + s.punctuation, k=10)))
 
 
 random = secrets.SystemRandom()
