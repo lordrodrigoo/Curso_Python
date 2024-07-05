@@ -50,3 +50,4 @@ else:
     print('O valor de basic:', args.basic)
 
 print(args.verbose)
+print()
