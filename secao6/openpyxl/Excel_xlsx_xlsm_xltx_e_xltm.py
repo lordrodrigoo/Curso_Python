@@ -9,6 +9,7 @@
 # Documentação: https://openpyxl.readthedocs.io/en/stable/
 
 from pathlib import Path
+
 import openpyxl
 
 
@@ -50,3 +51,8 @@ for student in students:   # Jeito mais simples
     worksheet.append(student)
 
 workbook.save(WORKBOOK_PATH)
+
+
+
+
+        
