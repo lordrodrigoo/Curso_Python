@@ -1,0 +1,50 @@
+import pymysql
+import dotenv
+import os
+dotenv.load_dotenv()
+
+TABLE_NAME = 'customers'
+
+connection = pymysql.connect(
+    host=os.environ['MYSQL_HOST'],
+    user=os.environ['MYSQL_USER'],
+    password=os.environ['MYSQL_ROOT_PASSWORD'],
+    database=os.environ['MYSQL_DATABASE'],
+)
+
+
+
+with connection.cursor() as cursor:
+    sql = (
+        f'INSERT INTO {TABLE_NAME} '
+        '(nome, idade) '
+        'VALUES '
+        '(%(name)s, %(age)s) '
+    )
+    data3 = (
+        {"name": "Sah", "age": 33, },
+        {"name": "Júlia", "age": 74, },
+        {"name": "Rose", "age": 53, },
+    )
+    result = cursor.executemany(sql, data3)
+    # print(sql)
+    # print(data3)
+    # print(result)
+    connection.commit()
+
+    with connection.cursor() as cursor:
+        sql = (
+            f'INSERT INTO {TABLE_NAME} '
+            '(nome, idade) '
+            'VALUES '
+            '(%s, %s) '
+        )
+        data4 = (
+            ("Siri", 22, ),
+            ("Helena", 15, ),
+        )
+        result = cursor.executemany(sql, data4)  # type: ignore
+        print(sql)
+        print(data4)
+        print(result)
+    connection.commit()
